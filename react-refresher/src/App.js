@@ -1,16 +1,28 @@
+import {useState} from 'react'
+
 import Welcome from "./welcome";
+
+
 function App() {
+  // use state gives two values, a state value, and the method to change that state value
+  const [show, setShow] = useState(true)
   const names = ['Jim', 'Jordan', 'Jared']
-  // function renderWelcome(name) {
-  // }
+  
+function toggle() {
+  setShow(!show)
+  console.log(show)
+}
+
   return (
     <>
-      {/* This open close bracket allows react to return one top level element */}
-      <div>
-        {/* This firstName will become part of props and is how you can pass information into a component */}
-        {names.map(name => <Welcome firstName={name}/>)}
-      </div>
-      <div></div>
+      <button onClick={toggle}> Show / Hide</button> 
+      {
+        show ?
+        <div>
+          {names.map((name, i) => <Welcome firstName = {name} key = {i} />)}
+        </div>
+        : null
+      }
     </>
     
   );
